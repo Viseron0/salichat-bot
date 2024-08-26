@@ -1,0 +1,13 @@
+[Unit]
+Description=Salichat
+
+[Service]
+ExecStart=/home/cloud/sali/env/bin/gunicorn -w 4 -b 0.0.0.0:8080 main:app --timeout 300
+WorkingDirectory=/home/cloud/sali
+User=cloud
+Restart=always
+Environment="PATH=/home/cloud/sali/env/bin"
+
+[Install]
+WantedBy=multi-user.target
+

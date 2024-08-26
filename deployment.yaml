@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: salichat-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: salichat
+  template:
+    metadata:
+      labels:
+        app: salichat
+    spec:
+      containers:
+      - name: salichat
+        image: us-east1-docker.pkg.dev/chrome-genre-431916-n5/salichat-repository/salichat:latest
+        ports:
+        - containerPort: 8080

@@ -1,0 +1,6 @@
+flask
+openai
+packaging
+google-cloud-secret-manager
+gspread
+google-auth
