@@ -1,67 +1,41 @@
-#!/usr/bin/env python3
 import os
 from time import sleep
 from packaging import version
 from flask import Flask, request, jsonify
 import openai
-from openai import OpenAI
+from apikey_service import get_openai_api_key  # Importa la función de apikey_service
 import functions
-from google.cloud import secretmanager
 import logging
-from time import sleep
 from datetime import datetime
-
+import gspread
+from google.oauth2.service_account import Credentials
+import uuid
 
 app = Flask(__name__)
 
 # Configurar logging
 logging.basicConfig(level=logging.DEBUG, format='%(asctime)s %(levelname)s %(message)s')
 
+# Obtener la API Key desde la variable de entorno usando apikey_service
+OPENAI_API_KEY = get_openai_api_key()
+openai.api_key = OPENAI_API_KEY
 
-
-#importar bibliotecas
+# Configuración de Google Sheets usando el archivo de credenciales
 try:
-        import gspread
-        from google.oauth2.service_account import Credentials
-        SCOPES = ['https://www.googleapis.com/auth/drive','https://www.googleapis.com/auth/spreadsheets']
-        CREDENTIALS_FILE = '/home/cloud/sali/salichat-credenciales.json'
-        print("Bibliotecas importadas correctamente")
-except ImportError as e:
-        print(f"Error importing libraries: {e}")
-        raise e
+    SCOPES = ['https://www.googleapis.com/auth/drive', 'https://www.googleapis.com/auth/spreadsheets']
 
+    CREDENTIALS_FILE = '/home/ec2-user/salichat-bot/salichat-credenciales.json'
 
-#acceso a los secretos de api key de secret manager de google
-def access_secret_version(secret_name):
-    """
-    Accede a una versión de un secreto en Secret Manager.
-    Args:
-    secret_name (str): El nombre completo del recurso secreto.
-    Returns:
-    str: El valor del secreto como una cadena de texto.
-    """
-    client = secretmanager.SecretManagerServiceClient()
-    response = client.access_secret_version(request={"name": secret_name})
-    return response.payload.data.decode('UTF-8')
+    creds = Credentials.from_service_account_file(CREDENTIALS_FILE, scopes=SCOPES)
+    client_gs = gspread.authorize(creds)
+    print("Credenciales de Google Sheets configuradas correctamente")
 
-# Asume que 'your-secret-id' es el nombre del secreto donde has almacenado tu OPENAI_API_KEY
-# y 'your-project-id' es tu ID de proyecto en GCP
-secret_name = "projects/salichat/secrets/openai_api_key/versions/latest"
-OPENAI_API_KEY = access_secret_version(secret_name)
-
-
-# Configuración de Google Sheets
-#CREDENTIALS_FILE = '/home/cloud/sali/salichat-credenciales.json'  # Ruta a tu archivo de credenciales JSON
-try:
-        creds = Credentials.from_service_account_file(CREDENTIALS_FILE, scopes=SCOPES)
-        client_gs = gspread.authorize(creds)
-        print("Credenciales de Google Sheets configuradas correctamente")
-        SHEET_ID = '1YJbLia2JBShRTWHzmOiZiW4E67WCEJ192bUhtDZt7_U'
-        sheet = client_gs.open_by_key(SHEET_ID).sheet1  # Reemplaza con el nombre de tu Google Sheet
-        print("Conexión a google sheets establecida")
+    SHEET_ID = '1YJbLia2JBShRTWHzmOiZiW4E67WCEJ192bUhtDZt7_U'
+    sheet = client_gs.open_by_key(SHEET_ID).sheet1
+    print("Conexión a Google Sheets establecida")
 
 except FileNotFoundError as e:
-    print(f"Error setting up google sheets: {e}")
+    print(f"Error setting up Google Sheets: {e}")
     raise e
 except gspread.exceptions.APIError as e:
     print(f"API error: {e}")
@@ -70,101 +44,101 @@ except gspread.exceptions.SpreadsheetNotFound as e:
     print(f"Spreadsheet not found: {e}")
     raise e
 
-
-
+# Función para agregar datos a Google Sheets
 def agregar_input(input_data):
-        try:
-                sheet.append_row(input_data)
-                print(F"Input agregado a google Sheets:{input_data}")
-        except Exception as e:
-                print(f"Error adding input to google sheets: {e}")
+    try:
+        sheet.append_row(input_data)
+        print(f"Input agregado a Google Sheets: {input_data}")
+    except Exception as e:
+        print(f"Error adding input to Google Sheets: {e}")
 
 
-# Check OpenAI version is correct
-required_version = version.parse("1.1.1")
-current_version = version.parse(openai.__version__)
-#OPENAI_API_KEY = os.environ['openai_api_key']
-if current_version < required_version:
-  raise ValueError(f"Error: OpenAI version {openai.__version__}"
-                   " is less than the required version 1.1.1")
-else:
-  print("OpenAI version is compatible.")
+conversations = {}
 
-# Start Flask app
-app = Flask(__name__)
-
-# Init client
-client = OpenAI(api_key=OPENAI_API_KEY)  # should use env variable OPENAI_API_KEY in secrets (bottom left corner)
-
-# Create new assistant or load existing
-assistant_id = functions.create_assistant(client)
-
-# Start conversation thread
+# Endpoint para iniciar conversación
 @app.route('/start', methods=['GET'])
 def start_conversation():
-    logging.info("Starting a new conversation...")  # Debugging line
-    thread = client.beta.threads.create()
-    logging.info(f"New thread created with ID: {thread.id}")  # Debugging line
-    return jsonify({"thread_id": thread.id})
+
+   try:
+      conversation_id = str(uuid.uuid4())
+      print(openai.__version__)
+      print(conversation_id)
+      response = openai.ChatCompletion.create(
+          model="gpt-3.5-turbo",  # Usa un modelo compatible
+          messages=[
+              {"role": "user", "content": "Start a conversation."}
+          ]
+      )
+        # Devuelve la respuesta de OpenAI en formato JSON
+      return jsonify(response['choices'][0]['message']['content'])
+
+
+   except Exception as e:
+      return jsonify({"error": str(e)}), 500
 
 
 
-# Generate response
+# Generar respuesta
 @app.route('/chat', methods=['POST'])
 def chat():
+    logging.info(f"Request Headers: {request.headers}")
+    logging.info(f"Request Content-Type: {request.content_type}")
+    logging.info(f"Request Data: {request.data}")
+
+    if not request.is_json:
+        logging.error("Error: Unsupported Media Type - Content-Type must be application/json")
+        return jsonify({"error": "Unsupported Media Type - Content-Type must be application/json"}), 415
+
     data = request.json
     thread_id = data.get('thread_id')
+    print(thread_id)
     user_input = data.get('message', '')
 
-    logging.info(f"Data received: {data}")  # Log para verificar los datos recibidos
+    logging.info(f"Data received: {data}")
 
     if not thread_id:
-        logging.error("Error: Missing thread_id")  # Debugging line
+        logging.error("Error: Missing thread_id")
         return jsonify({"error": "Missing thread_id"}), 400
 
-    logging.info(f"Received message: {user_input} for thread ID: {thread_id}")  # Debugging line
+    logging.info(f"Received message: {user_input} for thread ID: {thread_id}")
+
+
+    if thread_id not in conversations:
+        conversations[thread_id] = []
+
+    conversation_history = conversations[thread_id]
+    conversation_history.append({"role": "user", "content": user_input})
+
+
 
     try:
-        # Add the user's message to the thread
-        client.beta.threads.messages.create(thread_id=thread_id,
-                                            role="user",
-                                            content=user_input)
 
-        logging.info("User message added to the thread")
+       # Enviar el mensaje del usuario a la API de OpenAI y obtener respuesta
+        response = openai.ChatCompletion.create(
+            model="gpt-3.5-turbo",
+            messages=conversation_history
+        )
 
-        # Run the Assistant
-        run = client.beta.threads.runs.create(thread_id=thread_id,
-                                              assistant_id=assistant_id)
+        # Obtener el contenido de la respuesta generada
+        assistant_response = response['choices'][0]['message']['content']
+        logging.info(f"Assistant response: {assistant_response}")
+        conversation_history.append({"role": "assistant", "content": assistant_response})
 
-        logging.info(f"Assistant run started with ID: {run.id}")
-
-        # Check if the Run requires action (function call)
-        while True:
-            run_status = client.beta.threads.runs.retrieve(thread_id=thread_id,
-                                                           run_id=run.id)
-            logging.info(f"Run status: {run_status.status}")
-            if run_status.status == 'completed':
-                break
-            sleep(1)  # Wait for a second before checking again
-
-        # Retrieve and return the latest message from the assistant
-        messages = client.beta.threads.messages.list(thread_id=thread_id)
-        response = messages.data[0].content[0].text.value
-
-        logging.info(f"Assistant response: {response}")  # Debugging line
-
+        # Guardar el registro de la interacción con la fecha y hora actual
         current_datetime = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-
-        input_data = [thread_id, user_input, response,current_datetime]
-        agregar_input(input_data)
+        input_data = [thread_id, user_input, assistant_response, current_datetime]
+        agregar_input(input_data)  # Asumiendo que esta función guarda en Google Sheets
         logging.info(f"Data saved to Google Sheets: {input_data}")
 
-        return jsonify({"response": response,"datetime": current_datetime})
+        # Devolver la respuesta del asistente al cliente
+        return jsonify({"response": assistant_response})
 
     except Exception as e:
         logging.error(f"Error in chat endpoint: {e}")
         return jsonify({"error": "An error occurred"}), 500
 
-# Run server
+# Ejecutar el servidor
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080)
+
+

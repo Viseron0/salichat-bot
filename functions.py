@@ -19,9 +19,9 @@ def create_assistant(client):
           """,
                                               model="gpt-4-1106-preview",
                                               tools=[{
-                                                  "type": "retrieval"
+                                                  "type": "file_search"
                                               }],
-                                              file_ids=[file.id])
+                                              )
 
     with open(assistant_file_path, 'w') as file:
       json.dump({'assistant_id': assistant.id}, file)
