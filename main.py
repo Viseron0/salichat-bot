@@ -52,35 +52,35 @@ def agregar_input(input_data):
     except Exception as e:
         print(f"Error adding input to Google Sheets: {e}")
 
-
 conversations = {}
 
 # Endpoint para iniciar conversación
 @app.route('/start', methods=['GET'])
 def start_conversation():
+    try:
+        conversation_id = str(uuid.uuid4())
+        print(openai.__version__)
+        print(conversation_id)
+        response = openai.ChatCompletion.create(
+            model="gpt-3.5-turbo",  # Usa un modelo compatible
+            messages=[
+                {"role": "user", "content": "Start a conversation."}
+            ]
+        )
+        # Devuelve la respuesta de OpenAI junto con el conversation_id
+        return jsonify({
+            "thread_id": conversation_id,  # Aquí se devuelve el conversation_id
+            "response": response['choices'][0]['message']['content']
+        })
 
-   try:
-      conversation_id = str(uuid.uuid4())
-      print(openai.__version__)
-      print(conversation_id)
-      response = openai.ChatCompletion.create(
-          model="gpt-3.5-turbo",  # Usa un modelo compatible
-          messages=[
-              {"role": "user", "content": "Start a conversation."}
-          ]
-      )
-        # Devuelve la respuesta de OpenAI en formato JSON
-      return jsonify(response['choices'][0]['message']['content'])
-
-
-   except Exception as e:
-      return jsonify({"error": str(e)}), 500
-
-
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 # Generar respuesta
 @app.route('/chat', methods=['POST'])
 def chat():
+    conversation_id = str(uuid.uuid4())
+    print(conversation_id)
     logging.info(f"Request Headers: {request.headers}")
     logging.info(f"Request Content-Type: {request.content_type}")
     logging.info(f"Request Data: {request.data}")
@@ -102,14 +102,19 @@ def chat():
 
     logging.info(f"Received message: {user_input} for thread ID: {thread_id}")
 
-
     if thread_id not in conversations:
         conversations[thread_id] = []
 
     conversation_history = conversations[thread_id]
     conversation_history.append({"role": "user", "content": user_input})
 
+    print(f"Thread ID: {thread_id}")
+    print(f"Message: {user_input}")
 
+    if thread_id in conversations:
+        print(f"Thread ID {thread_id} exists in conversations")
+    else:
+        print(f"Thread ID {thread_id} does NOT exist")
 
     try:
 
