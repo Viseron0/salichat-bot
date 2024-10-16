@@ -1,0 +1,165 @@
+2024-09-30 20:46:35,338 DEBUG Converted retries value: 3 -> Retry(total=3, connect=None, read=None, redirect=None, status=None)
+2024-09-30 20:46:35,342 DEBUG Making request: POST https://oauth2.googleapis.com/token
+2024-09-30 20:46:35,343 DEBUG Starting new HTTPS connection (1): oauth2.googleapis.com:443
+2024-09-30 20:46:35,374 DEBUG https://oauth2.googleapis.com:443 "POST /token HTTP/1.1" 200 None
+2024-09-30 20:46:35,375 DEBUG Starting new HTTPS connection (1): sheets.googleapis.com:443
+2024-09-30 20:46:36,101 DEBUG https://sheets.googleapis.com:443 "GET /v4/spreadsheets/1YJbLia2JBShRTWHzmOiZiW4E67WCEJ192bUhtDZt7_U?includeGridData=false HTTP/1.1" 200 None
+2024-09-30 20:46:36,246 DEBUG https://sheets.googleapis.com:443 "GET /v4/spreadsheets/1YJbLia2JBShRTWHzmOiZiW4E67WCEJ192bUhtDZt7_U?includeGridData=false HTTP/1.1" 200 None
+Credenciales de Google Sheets configuradas correctamente
+Conexión a Google Sheets establecida
+ * Serving Flask app 'main'
+ * Debug mode: off
+2024-09-30 20:46:36,254 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8080
+ * Running on http://172.31.82.30:8080
+2024-09-30 20:46:36,254 INFO [33mPress CTRL+C to quit[0m
+2024-09-30 20:46:46,347 DEBUG Converted retries value: 3 -> Retry(total=3, connect=None, read=None, redirect=None, status=None)
+2024-09-30 20:46:46,349 DEBUG Making request: POST https://oauth2.googleapis.com/token
+2024-09-30 20:46:46,351 DEBUG Starting new HTTPS connection (1): oauth2.googleapis.com:443
+2024-09-30 20:46:46,380 DEBUG https://oauth2.googleapis.com:443 "POST /token HTTP/1.1" 200 None
+2024-09-30 20:46:46,381 DEBUG Starting new HTTPS connection (1): sheets.googleapis.com:443
+2024-09-30 20:46:46,550 DEBUG https://sheets.googleapis.com:443 "GET /v4/spreadsheets/1YJbLia2JBShRTWHzmOiZiW4E67WCEJ192bUhtDZt7_U?includeGridData=false HTTP/1.1" 200 None
+2024-09-30 20:46:46,679 DEBUG https://sheets.googleapis.com:443 "GET /v4/spreadsheets/1YJbLia2JBShRTWHzmOiZiW4E67WCEJ192bUhtDZt7_U?includeGridData=false HTTP/1.1" 200 None
+Credenciales de Google Sheets configuradas correctamente
+Conexión a Google Sheets establecida
+ * Serving Flask app 'main'
+ * Debug mode: off
+Address already in use
+Port 8080 is in use by another program. Either identify and stop that program, or start the server with a different port.
+2024-09-30 20:47:58,578 DEBUG message='Request to OpenAI API' method=post path=https://api.openai.com/v1/chat/completions
+2024-09-30 20:47:58,578 DEBUG api_version=None data='{"model": "gpt-3.5-turbo", "messages": [{"role": "user", "content": "Start a conversation."}], "max_tokens": 2048}' message='Post details'
+2024-09-30 20:47:58,578 DEBUG Converted retries value: 2 -> Retry(total=2, connect=None, read=None, redirect=None, status=None)
+2024-09-30 20:47:58,580 DEBUG Starting new HTTPS connection (1): api.openai.com:443
+2024-09-30 20:47:59,264 DEBUG https://api.openai.com:443 "POST /v1/chat/completions HTTP/1.1" 200 None
+2024-09-30 20:47:59,265 DEBUG message='OpenAI API response' path=https://api.openai.com/v1/chat/completions processing_ms=226 request_id=req_5d0427f39ecfb2f8eb37e3bacd73c589 response_code=200
+2024-09-30 20:47:59,270 INFO 35.172.149.91 - - [30/Sep/2024 20:47:59] "GET /start HTTP/1.1" 200 -
+2024-09-30 20:48:17,921 DEBUG message='Request to OpenAI API' method=post path=https://api.openai.com/v1/chat/completions
+2024-09-30 20:48:17,921 DEBUG api_version=None data='{"model": "gpt-3.5-turbo", "messages": [{"role": "user", "content": "Start a conversation."}], "max_tokens": 2048}' message='Post details'
+2024-09-30 20:48:17,921 DEBUG Converted retries value: 2 -> Retry(total=2, connect=None, read=None, redirect=None, status=None)
+2024-09-30 20:48:17,922 DEBUG Starting new HTTPS connection (1): api.openai.com:443
+2024-09-30 20:48:18,376 DEBUG https://api.openai.com:443 "POST /v1/chat/completions HTTP/1.1" 200 None
+2024-09-30 20:48:18,379 DEBUG message='OpenAI API response' path=https://api.openai.com/v1/chat/completions processing_ms=211 request_id=req_80f8df364a0649156a4a9620aa540f8d response_code=200
+2024-09-30 20:48:18,379 INFO 35.174.43.40 - - [30/Sep/2024 20:48:18] "GET /start HTTP/1.1" 200 -
+2024-09-30 20:48:25,519 INFO Request Headers: Content-Type: application/json
+User-Agent: Voiceflow/1.0.0 (+https://voiceflow.com)
+Accept: */*
+Content-Length: 83
+Accept-Encoding: gzip,deflate
+Host: 3.80.134.93:8080
+Connection: close
+
+
+2024-09-30 20:48:25,519 INFO Request Content-Type: application/json
+2024-09-30 20:48:25,519 INFO Request Data: b'{\r\n  "thread_id": "6907668d-1d72-4027-aafe-26ea004c8240",\r\n  "message": "hola"\r\n}\r\n'
+2024-09-30 20:48:25,519 INFO Data received: {'thread_id': '6907668d-1d72-4027-aafe-26ea004c8240', 'message': 'hola'}
+2024-09-30 20:48:25,519 INFO Received message: hola for thread ID: 6907668d-1d72-4027-aafe-26ea004c8240
+2024-09-30 20:48:25,519 DEBUG message='Request to OpenAI API' method=post path=https://api.openai.com/v1/chat/completions
+2024-09-30 20:48:25,519 DEBUG api_version=None data='{"model": "gpt-3.5-turbo", "messages": [{"role": "user", "content": "hola"}]}' message='Post details'
+2024-09-30 20:48:25,520 DEBUG Converted retries value: 2 -> Retry(total=2, connect=None, read=None, redirect=None, status=None)
+2024-09-30 20:48:25,520 DEBUG Starting new HTTPS connection (1): api.openai.com:443
+2024-09-30 20:48:25,987 DEBUG https://api.openai.com:443 "POST /v1/chat/completions HTTP/1.1" 200 None
+2024-09-30 20:48:25,987 DEBUG message='OpenAI API response' path=https://api.openai.com/v1/chat/completions processing_ms=224 request_id=req_fc6e261cdd19bbb3d12eec8b22e78ef1 response_code=200
+2024-09-30 20:48:25,988 INFO Assistant response: ¡Hola! ¿En qué puedo ayudarte hoy?
+2024-09-30 20:48:26,438 DEBUG https://sheets.googleapis.com:443 "POST /v4/spreadsheets/1YJbLia2JBShRTWHzmOiZiW4E67WCEJ192bUhtDZt7_U/values/%27Hoja%201%27:append?valueInputOption=RAW&includeValuesInResponse=False HTTP/1.1" 200 None
+2024-09-30 20:48:26,438 INFO Data saved to Google Sheets: ['6907668d-1d72-4027-aafe-26ea004c8240', 'hola', '¡Hola! ¿En qué puedo ayudarte hoy?', '2024-09-30 20:48:25']
+2024-09-30 20:48:26,438 INFO 35.174.43.40 - - [30/Sep/2024 20:48:26] "POST /chat HTTP/1.1" 200 -
+2024-09-30 20:48:35,485 INFO Request Headers: Content-Type: application/json
+User-Agent: Voiceflow/1.0.0 (+https://voiceflow.com)
+Accept: */*
+Content-Length: 90
+Accept-Encoding: gzip,deflate
+Host: 3.80.134.93:8080
+Connection: close
+
+
+2024-09-30 20:48:35,485 INFO Request Content-Type: application/json
+2024-09-30 20:48:35,486 INFO Request Data: b'{\r\n  "thread_id": "6907668d-1d72-4027-aafe-26ea004c8240",\r\n  "message": "quien eres?"\r\n}\r\n'
+2024-09-30 20:48:35,486 INFO Data received: {'thread_id': '6907668d-1d72-4027-aafe-26ea004c8240', 'message': 'quien eres?'}
+2024-09-30 20:48:35,486 INFO Received message: quien eres? for thread ID: 6907668d-1d72-4027-aafe-26ea004c8240
+2024-09-30 20:48:35,486 DEBUG message='Request to OpenAI API' method=post path=https://api.openai.com/v1/chat/completions
+2024-09-30 20:48:35,486 DEBUG api_version=None data='{"model": "gpt-3.5-turbo", "messages": [{"role": "user", "content": "hola"}, {"role": "assistant", "content": "\\u00a1Hola! \\u00bfEn qu\\u00e9 puedo ayudarte hoy?"}, {"role": "user", "content": "quien eres?"}]}' message='Post details'
+2024-09-30 20:48:35,486 DEBUG Converted retries value: 2 -> Retry(total=2, connect=None, read=None, redirect=None, status=None)
+2024-09-30 20:48:35,487 DEBUG Starting new HTTPS connection (1): api.openai.com:443
+2024-09-30 20:48:36,131 DEBUG https://api.openai.com:443 "POST /v1/chat/completions HTTP/1.1" 200 None
+2024-09-30 20:48:36,131 DEBUG message='OpenAI API response' path=https://api.openai.com/v1/chat/completions processing_ms=397 request_id=req_e18f2aaead485043f563cbe0ce88fa59 response_code=200
+2024-09-30 20:48:36,132 INFO Assistant response: Soy un asistente virtual creado para ayudarte con cualquier pregunta o problema que tengas. ¿En qué puedo ayudarte hoy?
+2024-09-30 20:48:36,442 DEBUG https://sheets.googleapis.com:443 "POST /v4/spreadsheets/1YJbLia2JBShRTWHzmOiZiW4E67WCEJ192bUhtDZt7_U/values/%27Hoja%201%27:append?valueInputOption=RAW&includeValuesInResponse=False HTTP/1.1" 200 None
+2024-09-30 20:48:36,443 INFO Data saved to Google Sheets: ['6907668d-1d72-4027-aafe-26ea004c8240', 'quien eres?', 'Soy un asistente virtual creado para ayudarte con cualquier pregunta o problema que tengas. ¿En qué puedo ayudarte hoy?', '2024-09-30 20:48:36']
+2024-09-30 20:48:36,443 INFO 35.174.43.40 - - [30/Sep/2024 20:48:36] "POST /chat HTTP/1.1" 200 -
+2024-09-30 20:48:53,473 INFO Request Headers: Content-Type: application/json
+User-Agent: Voiceflow/1.0.0 (+https://voiceflow.com)
+Accept: */*
+Content-Length: 129
+Accept-Encoding: gzip,deflate
+Host: 3.80.134.93:8080
+Connection: close
+
+
+2024-09-30 20:48:53,473 INFO Request Content-Type: application/json
+2024-09-30 20:48:53,473 INFO Request Data: b'{\r\n  "thread_id": "6907668d-1d72-4027-aafe-26ea004c8240",\r\n  "message": "tengo un problema lega, me puedes ayudar con ello?"\r\n}\r\n'
+2024-09-30 20:48:53,473 INFO Data received: {'thread_id': '6907668d-1d72-4027-aafe-26ea004c8240', 'message': 'tengo un problema lega, me puedes ayudar con ello?'}
+2024-09-30 20:48:53,473 INFO Received message: tengo un problema lega, me puedes ayudar con ello? for thread ID: 6907668d-1d72-4027-aafe-26ea004c8240
+2024-09-30 20:48:53,473 DEBUG message='Request to OpenAI API' method=post path=https://api.openai.com/v1/chat/completions
+2024-09-30 20:48:53,473 DEBUG api_version=None data='{"model": "gpt-3.5-turbo", "messages": [{"role": "user", "content": "hola"}, {"role": "assistant", "content": "\\u00a1Hola! \\u00bfEn qu\\u00e9 puedo ayudarte hoy?"}, {"role": "user", "content": "quien eres?"}, {"role": "assistant", "content": "Soy un asistente virtual creado para ayudarte con cualquier pregunta o problema que tengas. \\u00bfEn qu\\u00e9 puedo ayudarte hoy?"}, {"role": "user", "content": "tengo un problema lega, me puedes ayudar con ello?"}]}' message='Post details'
+2024-09-30 20:48:53,473 DEBUG Converted retries value: 2 -> Retry(total=2, connect=None, read=None, redirect=None, status=None)
+2024-09-30 20:48:53,474 DEBUG Starting new HTTPS connection (1): api.openai.com:443
+2024-09-30 20:48:54,524 DEBUG https://api.openai.com:443 "POST /v1/chat/completions HTTP/1.1" 200 None
+2024-09-30 20:48:54,524 DEBUG message='OpenAI API response' path=https://api.openai.com/v1/chat/completions processing_ms=830 request_id=req_e8e222b82e8bfc6650f611aa81f1a7d3 response_code=200
+2024-09-30 20:48:54,525 INFO Assistant response: Lo siento, pero como asistente virtual no tengo la capacidad de proporcionar asesoramiento legal. Te recomendaría que consultes con un abogado o profesional legal para resolver tu problema. ¡Espero que puedas encontrar la ayuda que necesitas!
+2024-09-30 20:48:54,758 DEBUG https://sheets.googleapis.com:443 "POST /v4/spreadsheets/1YJbLia2JBShRTWHzmOiZiW4E67WCEJ192bUhtDZt7_U/values/%27Hoja%201%27:append?valueInputOption=RAW&includeValuesInResponse=False HTTP/1.1" 200 None
+2024-09-30 20:48:54,758 INFO Data saved to Google Sheets: ['6907668d-1d72-4027-aafe-26ea004c8240', 'tengo un problema lega, me puedes ayudar con ello?', 'Lo siento, pero como asistente virtual no tengo la capacidad de proporcionar asesoramiento legal. Te recomendaría que consultes con un abogado o profesional legal para resolver tu problema. ¡Espero que puedas encontrar la ayuda que necesitas!', '2024-09-30 20:48:54']
+2024-09-30 20:48:54,759 INFO 35.172.149.91 - - [30/Sep/2024 20:48:54] "POST /chat HTTP/1.1" 200 -
+2024-09-30 20:49:21,092 DEBUG message='Request to OpenAI API' method=post path=https://api.openai.com/v1/chat/completions
+2024-09-30 20:49:21,092 DEBUG api_version=None data='{"model": "gpt-3.5-turbo", "messages": [{"role": "user", "content": "Start a conversation."}], "max_tokens": 2048}' message='Post details'
+2024-09-30 20:49:21,092 DEBUG Converted retries value: 2 -> Retry(total=2, connect=None, read=None, redirect=None, status=None)
+2024-09-30 20:49:21,093 DEBUG Starting new HTTPS connection (1): api.openai.com:443
+2024-09-30 20:49:21,541 DEBUG https://api.openai.com:443 "POST /v1/chat/completions HTTP/1.1" 200 None
+2024-09-30 20:49:21,542 DEBUG message='OpenAI API response' path=https://api.openai.com/v1/chat/completions processing_ms=200 request_id=req_301b1d722329c2980e07c4e942276652 response_code=200
+2024-09-30 20:49:21,542 INFO 35.174.43.40 - - [30/Sep/2024 20:49:21] "GET /start HTTP/1.1" 200 -
+2024-09-30 20:49:29,768 INFO Request Headers: Content-Type: application/json
+User-Agent: Voiceflow/1.0.0 (+https://voiceflow.com)
+Accept: */*
+Content-Length: 106
+Accept-Encoding: gzip,deflate
+Host: 3.80.134.93:8080
+Connection: close
+
+
+2024-09-30 20:49:29,768 INFO Request Content-Type: application/json
+2024-09-30 20:49:29,768 INFO Request Data: b'{\r\n  "thread_id": "45ef1ff0-d67f-4433-817e-4eeb77ddabdc",\r\n  "message": "quien eres?, como te llamas"\r\n}\r\n'
+2024-09-30 20:49:29,769 INFO Data received: {'thread_id': '45ef1ff0-d67f-4433-817e-4eeb77ddabdc', 'message': 'quien eres?, como te llamas'}
+2024-09-30 20:49:29,769 INFO Received message: quien eres?, como te llamas for thread ID: 45ef1ff0-d67f-4433-817e-4eeb77ddabdc
+2024-09-30 20:49:29,769 DEBUG message='Request to OpenAI API' method=post path=https://api.openai.com/v1/chat/completions
+2024-09-30 20:49:29,769 DEBUG api_version=None data='{"model": "gpt-3.5-turbo", "messages": [{"role": "user", "content": "quien eres?, como te llamas"}]}' message='Post details'
+2024-09-30 20:49:29,769 DEBUG Converted retries value: 2 -> Retry(total=2, connect=None, read=None, redirect=None, status=None)
+2024-09-30 20:49:29,770 DEBUG Starting new HTTPS connection (1): api.openai.com:443
+2024-09-30 20:49:30,573 DEBUG https://api.openai.com:443 "POST /v1/chat/completions HTTP/1.1" 200 None
+2024-09-30 20:49:30,574 DEBUG message='OpenAI API response' path=https://api.openai.com/v1/chat/completions processing_ms=555 request_id=req_9b7d221a42145d4d3e36b69e8ed77e64 response_code=200
+2024-09-30 20:49:30,574 INFO Assistant response: Soy un asistente virtual creado para ayudarte en lo que necesites. Puedes llamarme asistente o simplemente preguntar lo que quieras saber. ¿En qué puedo ayudarte hoy?
+2024-09-30 20:49:30,879 DEBUG https://sheets.googleapis.com:443 "POST /v4/spreadsheets/1YJbLia2JBShRTWHzmOiZiW4E67WCEJ192bUhtDZt7_U/values/%27Hoja%201%27:append?valueInputOption=RAW&includeValuesInResponse=False HTTP/1.1" 200 None
+2024-09-30 20:49:30,879 INFO Data saved to Google Sheets: ['45ef1ff0-d67f-4433-817e-4eeb77ddabdc', 'quien eres?, como te llamas', 'Soy un asistente virtual creado para ayudarte en lo que necesites. Puedes llamarme asistente o simplemente preguntar lo que quieras saber. ¿En qué puedo ayudarte hoy?', '2024-09-30 20:49:30']
+2024-09-30 20:49:30,879 INFO 35.174.43.40 - - [30/Sep/2024 20:49:30] "POST /chat HTTP/1.1" 200 -
+2024-09-30 20:49:53,607 INFO Request Headers: Content-Type: application/json
+User-Agent: Voiceflow/1.0.0 (+https://voiceflow.com)
+Accept: */*
+Content-Length: 147
+Accept-Encoding: gzip,deflate
+Host: 3.80.134.93:8080
+Connection: close
+
+
+2024-09-30 20:49:53,608 INFO Request Content-Type: application/json
+2024-09-30 20:49:53,608 INFO Request Data: b'{\r\n  "thread_id": "45ef1ff0-d67f-4433-817e-4eeb77ddabdc",\r\n  "message": "tengo un problema con mi eps, no me quiere entregar mis medicamentos"\r\n}\r\n'
+2024-09-30 20:49:53,608 INFO Data received: {'thread_id': '45ef1ff0-d67f-4433-817e-4eeb77ddabdc', 'message': 'tengo un problema con mi eps, no me quiere entregar mis medicamentos'}
+2024-09-30 20:49:53,608 INFO Received message: tengo un problema con mi eps, no me quiere entregar mis medicamentos for thread ID: 45ef1ff0-d67f-4433-817e-4eeb77ddabdc
+2024-09-30 20:49:53,608 DEBUG message='Request to OpenAI API' method=post path=https://api.openai.com/v1/chat/completions
+2024-09-30 20:49:53,608 DEBUG api_version=None data='{"model": "gpt-3.5-turbo", "messages": [{"role": "user", "content": "quien eres?, como te llamas"}, {"role": "assistant", "content": "Soy un asistente virtual creado para ayudarte en lo que necesites. Puedes llamarme asistente o simplemente preguntar lo que quieras saber. \\u00bfEn qu\\u00e9 puedo ayudarte hoy?"}, {"role": "user", "content": "tengo un problema con mi eps, no me quiere entregar mis medicamentos"}]}' message='Post details'
+2024-09-30 20:49:53,608 DEBUG Converted retries value: 2 -> Retry(total=2, connect=None, read=None, redirect=None, status=None)
+2024-09-30 20:49:53,609 DEBUG Starting new HTTPS connection (1): api.openai.com:443
+2024-09-30 20:49:54,532 DEBUG https://api.openai.com:443 "POST /v1/chat/completions HTTP/1.1" 200 None
+2024-09-30 20:49:54,533 DEBUG message='OpenAI API response' path=https://api.openai.com/v1/chat/completions processing_ms=664 request_id=req_1d85aad66bf284ef19ec8cc4e0e1b7c4 response_code=200
+2024-09-30 20:49:54,533 INFO Assistant response: Lamento escuchar eso. ¿Podrías proporcionarme más información sobre tu situación? ¿Has intentado comunicarte con tu EPS para resolver el problema? Puedo darte algunas sugerencias sobre cómo proceder en esta situación.
+2024-09-30 20:49:54,737 DEBUG https://sheets.googleapis.com:443 "POST /v4/spreadsheets/1YJbLia2JBShRTWHzmOiZiW4E67WCEJ192bUhtDZt7_U/values/%27Hoja%201%27:append?valueInputOption=RAW&includeValuesInResponse=False HTTP/1.1" 200 None
+2024-09-30 20:49:54,738 INFO Data saved to Google Sheets: ['45ef1ff0-d67f-4433-817e-4eeb77ddabdc', 'tengo un problema con mi eps, no me quiere entregar mis medicamentos', 'Lamento escuchar eso. ¿Podrías proporcionarme más información sobre tu situación? ¿Has intentado comunicarte con tu EPS para resolver el problema? Puedo darte algunas sugerencias sobre cómo proceder en esta situación.', '2024-09-30 20:49:54']
+2024-09-30 20:49:54,738 INFO 35.174.43.40 - - [30/Sep/2024 20:49:54] "POST /chat HTTP/1.1" 200 -
